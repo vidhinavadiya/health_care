@@ -15,14 +15,10 @@ const sequelize = new Sequelize(
 
 const connectDB = async () => {
     try {
-        console.log("ENV =", process.env.NODE_ENV);
-        console.log("HOST =", process.env.MYSQLHOST);
-        console.log("PORT =", process.env.MYSQLPORT);
-        console.log("USER =", process.env.MYSQLUSER);
-        console.log("DB =", process.env.MYSQLDATABASE);
-        
         await sequelize.authenticate();
         console.log('✅ Database connected successfully!');
+        await sequelize.sync();
+        console.log('✅ Tables synced!');
     } catch (error) {
         console.error('❌ Unable to connect to database:', error);
     }
