@@ -23,6 +23,9 @@ const sequelize = new Sequelize (
 const connectDB = async () => {
     try {
         await sequelize.authenticate();
+        console.log("ENV =", process.env.NODE_ENV);
+        console.log("HOST =", process.env.DB_HOST);
+        console.log("PORT =", process.env.DB_PORT);
         console.log('database connected succesfully...!');
     } catch (error) {
         console.error('unable to connect to the database..!', error);
