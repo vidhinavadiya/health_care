@@ -1,21 +1,14 @@
 const { Sequelize } = require('sequelize');
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-}
+require('dotenv').config();
 
-const dbName =
-  process.env.NODE_ENV === 'production'
-    ? process.env.DB_NAME_PRODUCTION
-    : process.env.DB_NAME_DEVELOPMENT;
-
-const sequelize = new Sequelize (
-    dbName,
-    process.env.DB_USERNAME,
-    process.env.DB_PASSWORD,
+const sequelize = new Sequelize(
+    process.env.MYSQLDATABASE,
+    process.env.MYSQLUSER,
+    process.env.MYSQLPASSWORD,
     {
-        host: process.env.DB_HOST,
+        host: process.env.MYSQLHOST,
         dialect: 'mysql',
-        port: process.env.DB_PORT || 3306,
+        port: process.env.MYSQLPORT || 3306,
         logging: false
     }
 );
@@ -23,17 +16,17 @@ const sequelize = new Sequelize (
 const connectDB = async () => {
     try {
         console.log("ENV =", process.env.NODE_ENV);
-        console.log("HOST =", process.env.DB_HOST);
-        console.log("PORT =", process.env.DB_PORT);
-        console.log("USER =", process.env.DB_USERNAME);
-        console.log("DB =", process.env.DB_NAME_PRODUCTION);
+        console.log("HOST =", process.env.MYSQLHOST);
+        console.log("PORT =", process.env.MYSQLPORT);
+        console.log("USER =", process.env.MYSQLUSER);
+        console.log("DB =", process.env.MYSQLDATABASE);
         
         await sequelize.authenticate();
-        console.log('database connected succesfully...!');
+        console.log('✅ Database connected successfully!');
     } catch (error) {
-        console.error('unable to connect to the database..!', error);
+        console.error('❌ Unable to connect to database:', error);
     }
-}
+};
 
 connectDB();
 
