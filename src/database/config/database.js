@@ -23,10 +23,6 @@ const sequelize = new Sequelize (
 const connectDB = async () => {
     try {
         await sequelize.authenticate();
-        console.log("HOST =", process.env.DB_HOST);
-console.log("PORT =", process.env.DB_PORT);
-console.log("USER =", process.env.DB_USERNAME);
-console.log("DB =", process.env.DB_NAME_PRODUCTION);
         console.log('database connected succesfully...!');
     } catch (error) {
         console.error('unable to connect to the database..!', error);
