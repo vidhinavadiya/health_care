@@ -1,14 +1,19 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
+const dbName =
+  process.env.NODE_ENV === 'production'
+    ? process.env.DB_NAME_PRODUCTION
+    : process.env.DB_NAME_DEVELOPMENT;
+
 const sequelize = new Sequelize (
-    process.env.DB_NAME_DEVELOPMENT,
+    dbName,
     process.env.DB_USERNAME,
     process.env.DB_PASSWORD,
     {
         host: process.env.DB_HOST,
         dialect: 'mysql',
-        port: 3306,
+        port: process.env.DB_PORT || 3306,
         logging: false
     }
 );
