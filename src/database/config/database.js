@@ -17,12 +17,12 @@ const sequelize = new Sequelize(
 const connectDB = async () => {
     try {
         await sequelize.authenticate();
-        console.log('✅ Database connected successfully!');
+        console.log('Database connected successfully!');
 
         await sequelize.sync({ alter: true });
-        console.log('✅ Tables synced!');
+        console.log('Tables synced!');
         
-                // ✅ CHECK FIRST (IMPORTANT)
+        //CHECK FIRST (IMPORTANT)
         const [result] = await sequelize.query(
             "SELECT * FROM users WHERE email = 'admin@healthcare.com'"
         );
@@ -32,12 +32,12 @@ const connectDB = async () => {
                 sequelize.getQueryInterface(),
                 Sequelize
             );
-            console.log("✅ Admin Seeded");
+            console.log("Admin Seeded");
         } else {
-            console.log("ℹ️ Admin already exists");
+            console.log("Admin already exists");
         }
     } catch (error) {
-        console.error('❌ Unable to connect to database:', error);
+        console.error('Unable to connect to database:', error);
     }
 };
 

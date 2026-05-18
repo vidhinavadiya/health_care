@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasOne(models.Doctor, {
+        foreignKey: 'user_id',
+        as: 'doctorProfile'
+      });
     }
   }
   User.init({
@@ -68,6 +72,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     tableName: 'users',
     timestamps: true,
+    paranoid: true,
     indexes: [
       {
       unique: true,
