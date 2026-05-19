@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: true,
-        unique: true,
+        // unique: true,
         validate: {
           isEmail: true
         },
@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       phone: {
         type: DataTypes.STRING,
         allowNull: true,
-        unique: true
+        // unique: true
       },
       password: {
         type: DataTypes.STRING,
@@ -66,6 +66,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull:false,
         defaultValue: 'Asia/Kolkata'
+      },
+      password_setup_Token: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      password_setup_expires: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      deletedAt: {
+        type: DataTypes.DATE,
       },
   }, {
     sequelize,

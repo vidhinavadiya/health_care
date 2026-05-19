@@ -1,10 +1,10 @@
-const { AuthRepository } = require('../../repositories');
+const { AdminAuthRepository } = require('../../repositories');
 const { generateToken } = require('../../utils/jwt');
 
 class AuthService {
 
     constructor () {
-        this.authRepository = new AuthRepository();
+        this.authRepository = new AdminAuthRepository();
     }
     //login admin
     loginAdmin = async (payload) => {

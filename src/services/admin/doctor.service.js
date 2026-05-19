@@ -1,5 +1,8 @@
 const { DoctorRepository } = require('../../repositories');
 const db = require('../../database/models');
+const { generateSetupToken } = require('../../utils/jwt');
+const { sendMail } = require('../common/mail.service');
+const setupPasswordTemplate = require('../../templates/doctor/setup_password.template');
 
 class DoctorService {
     constructor() {
@@ -63,6 +66,30 @@ class DoctorService {
                 doctorPayload,
                 transaction
             );
+            //doctor set password
+            const setupToken = generateSetupToken({
+                id: user.id,
+                role: 'DOCTOR',
+                type: 'SET_PASSWORD',
+            });
+
+            await user.update({
+                password_setup_Token: setupToken,
+                password_setup_expires: new Date(Date.now() + 30 * 60 * 1000),
+            }, { transaction });
+
+            const setupLink = `${process.env.FRONTEND_URL}/api/v1/doctor/set-password?token=${setupToken}`;
+
+            const html = setupPasswordTemplate({
+                name: user.name,
+                setupLink,
+            });
+
+            await sendMail({
+                to: user.email,
+                subject: 'Setup Your Password',
+                html,
+            });
             await transaction.commit();
             return doctor;
         } catch (error) {

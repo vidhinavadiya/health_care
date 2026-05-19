@@ -58,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
       license_number: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        // unique: true
       },
       hospital_name: {
         type: DataTypes.STRING,

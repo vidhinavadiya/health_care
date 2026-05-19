@@ -1,7 +1,9 @@
-const AuthService = require('./admin/auth.service');
+const AdminAuthService = require('./admin/auth.service');
 const DoctorService = require('./admin/doctor.service');
+const DoctorAuthService = require('./doctor/auth.service');
 
 module.exports = {
-    AuthService:require('./admin/auth.service'),
+    AdminAuthService:require('./admin/auth.service'),
     DoctorService:require('./admin/doctor.service'),
+    DoctorAuthService:require('./doctor/auth.service'),
 };

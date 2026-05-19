@@ -1,9 +1,9 @@
 const { successResponse, serverError } = require('../../helpers/response');
-const { AuthService } = require('../../services');
+const { AdminAuthService } = require('../../services');
 
 class AuthController {
     constructor () {
-        this.authService = new AuthService();
+        this.authService = new AdminAuthService();
     }
     //login admin
     login = async (req) => {

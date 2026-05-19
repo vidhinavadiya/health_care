@@ -1,7 +1,9 @@
-const AuthRepository = require('./admin/auth.repository');
+const AdminAuthRepository = require('./admin/auth.repository');
 const DoctorRepository = require('./admin/doctor.repository');
+const DoctorAuthRepository = require('./doctor/auth.repository');
 
 module.exports = {
-    AuthRepository:require('./admin/auth.repository'),
+    AdminAuthRepository:require('./admin/auth.repository'),
     DoctorRepository:require('./admin/doctor.repository'),
+    DoctorAuthRepository:require('./doctor/auth.repository'),
 };

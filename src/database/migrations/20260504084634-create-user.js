@@ -45,6 +45,14 @@ module.exports = {
         allowNull:false,
         defaultValue: 'Asia/Kolkata'
       },
+      password_setup_Token: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      password_setup_expires: {
+        type: Sequelize.DATE,
+        allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,7 +1,9 @@
-const AuthController = require('./admin/auth.controller');
+const AdminAuthController = require('./admin/auth.controller');
 const DoctorController = require('./admin/doctor.controller');
+const DoctorAuthController = require('./doctor/auth.controller');
 
 module.exports = {
-    AuthController:require('./admin/auth.controller'),
+    AdminAuthController:require('./admin/auth.controller'),
     DoctorController:require('./admin/doctor.controller'),
+    DoctorAuthController:require('./doctor/auth.controller'),
 };
